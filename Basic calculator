@@ -1,0 +1,101 @@
+/*html*/
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="calculator">
+        <div class="display">
+            <input type="text" id="result" disabled>
+        </div>
+        <div class="keys">
+            <button class="operator" onclick="addToDisplay('+')">+</button>
+            <button class="operator" onclick="addToDisplay('-')">-</button>
+            <button class="operator" onclick="addToDisplay('*')">*</button>
+            <button class="operator" onclick="addToDisplay('/')">/</button>
+            <button onclick="addToDisplay('7')">7</button>
+            <button onclick="addToDisplay('8')">8</button>
+            <button onclick="addToDisplay('9')">9</button>
+            <button onclick="addToDisplay('4')">4</button>
+            <button onclick="addToDisplay('5')">5</button>
+            <button onclick="addToDisplay('6')">6</button>
+            <button onclick="addToDisplay('1')">1</button>
+            <button onclick="addToDisplay('2')">2</button>
+            <button onclick="addToDisplay('3')">3</button>
+            <button onclick="addToDisplay('0')">0</button>
+            <button onclick="clearDisplay()">C</button>
+            <button onclick="calculate()">=</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+/*css*/
+.calculator {
+    max-width: 300px;
+    margin: 0 auto;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.display {
+    background-color: #f0f0f0;
+    padding: 10px;
+    text-align: right;
+}
+
+.display input {
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 1.5em;
+    border: none;
+    outline: none;
+    text-align: right;
+}
+
+.keys {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.keys button {
+    border: none;
+    outline: none;
+    font-size: 1.5em;
+    padding: 15px;
+    cursor: pointer;
+    background-color: #e0e0e0;
+    transition: background-color 0.3s ease;
+}
+
+.keys button:hover {
+    background-color: #ccc;
+}
+
+.operator {
+    background-color: #f0f0f0;
+}
+/*js*/
+let display = document.getElementById('result');
+
+function addToDisplay(value) {
+    display.value += value;
+}
+
+function clearDisplay() {
+    display.value = '';
+}
+
+function calculate() {
+    try {
+        display.value = eval(display.value);
+    } catch (e) {
+        display.value = 'Error';
+    }
+}
